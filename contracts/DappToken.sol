@@ -58,5 +58,20 @@ contract DappToken {
 
     // delegated transfer
     // transferfrom
+    function transferFrom(address _from, address _to, uint256 _value) public returns(bool success) {
+        // require _from has enough tokens
+        require(_value <= balanceOf[_from]);
+        // require allowance is big enough
+        require(_value <= allowance[_from][msg.sender]);
+        // change the balance
+        balanceOf[_from] -= _value;
+        balanceOf[_to] += _value;
+        // update the allowance
+        allowance[_from][msg.sender] -= _value;
+        // transfer event
+        emit Transfer(_from, _to, _value);
+        // return a boolean
+        return true;
+    }
     
 }
