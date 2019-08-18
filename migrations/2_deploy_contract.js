@@ -1,5 +1,11 @@
 const DappToken = artifacts.require("DappToken");
+const DappTokenSale = artifacts.require("DappTokenSale");
 
 module.exports = function(deployer) {
-  deployer.deploy(DappToken, 1000000); // 1000000 should be constructor
+  deployer.deploy(DappToken, 1000000).then(function() {  // 1000000 should be constructor
+    // token price is 0.001 ether
+    var tokenPrice = 1000000000000000;
+    return   deployer.deploy(DappTokenSale, DappToken.address, tokenPrice);
+  }); 
+
 };
