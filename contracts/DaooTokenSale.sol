@@ -37,4 +37,22 @@ contract DappTokenSale {
         emit Sell(msg.sender, _numberOfTokens);
     }
 
+    // ending token dapptokensale
+    function endSale() public {
+        // require admin
+        require(msg.sender == admin);
+        // transfer remaining dapp tokens to admin
+        require(tokenContract.transfer(admin, tokenContract.balanceOf(address(this))));
+        // destroy contract
+        // address payable adminaddress = address(uint160(admin));
+        // selfdestruct(adminaddress);
+
+        // update : let's not destroy the contract here
+        // just transfer the balance to the admin
+        address payable adminaddress = address(uint160(admin));
+        uint contractbalance = address(this).balance;
+        adminaddress.transfer(contractbalance);
+
+    }
+
 }
