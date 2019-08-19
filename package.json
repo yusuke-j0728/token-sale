@@ -7,7 +7,8 @@
         "test": "test"
     },
     "scripts": {
-        "dev": "lite-server"
+        "dev": "browserify src/js/app.js -o src/js/bundle.js && lite-server",
+        "bundle": "browserify src/js/app.js -o src/js/bundle.js"
     },
     "author": "yusuke-j0728",
     "lisence": "ISC",
@@ -15,7 +16,9 @@
         "lite-server": "^2.5.4"
     },
     "dependencies": {
+        "jquery": "^3.3.1",
         "truffle-contract": "^4.0.29",
+        "uniq": "^1.0.1",
         "web3": "^1.2.1"
     }
 }
