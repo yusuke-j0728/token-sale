@@ -21,6 +21,7 @@ contract DappTokenSale {
     // multiply
     function multiply(uint x, uint y) internal pure returns (uint z) {
         require(y == 0 || (z = x * y) / y == x);
+        return z = x * y;
     }
 
     // buy tokens
